@@ -1,0 +1,620 @@
+/* Custom CSS cho giao diện Nvt_home */
+:root {
+    --nvt-primary: #012d1d;
+    --nvt-secondary: #0e6c4a;
+    --nvt-terracotta: #D4A373;
+    --nvt-sage-green: #74C69D;
+    --nvt-bg-light: #f8f9fa;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--nvt-bg-light);
+    color: #191c1d;
+}
+
+h1, h2, h3, .nvt-font-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Header */
+.nvt-navbar {
+    background-color: rgba(248, 249, 250, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.nvt-nav-link {
+    font-weight: 600;
+    color: #414844;
+    transition: color 0.2s;
+}
+
+.nvt-nav-link:hover, .nvt-nav-link.active {
+    color: var(--nvt-primary);
+}
+
+/* Hero Section */
+.nvt-hero-section {
+    position: relative;
+    min-height: 80vh;
+    background: linear-gradient(90deg, rgba(248,249,250,0.9) 0%, rgba(248,249,250,0.4) 100%), 
+                url('https://images.unsplash.com/photo-1470058869958-2a77ade41c02?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Category Shapes */
+.nvt-shape-organic {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.nvt-category-img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(1, 45, 29, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.nvt-category-item:hover .nvt-category-img {
+    transform: translateY(-8px) scale(1.03);
+}
+
+/* Product Cards */
+.nvt-product-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(1, 45, 29, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.nvt-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(1, 45, 29, 0.1);
+}
+
+.nvt-product-img {
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.nvt-badge-custom {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(116, 198, 157, 0.25);
+    color: var(--nvt-primary);
+    font-weight: 600;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.nvt-btn-add {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(1, 45, 29, 0.2);
+    color: var(--nvt-primary);
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.nvt-btn-add:hover {
+    background-color: var(--nvt-primary);
+    color: #ffffff;
+}
+
+.nvt-btn-primary {
+    background-color: var(--nvt-terracotta);
+    color: #ffffff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.nvt-btn-primary:hover {
+    background-color: #c29263;
+    color: #ffffff;
+    transform: scale(1.03);
+}
+
+
+/* Custom CSS cho giao diện Nvt_products */
+:root {
+    --nvt-primary: #012d1d;
+    --nvt-secondary: #0e6c4a;
+    --nvt-terracotta: #D4A373;
+    --nvt-sage-green: #74C69D;
+    --nvt-bg-light: #f8f9fa;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--nvt-bg-light);
+    color: #191c1d;
+}
+
+h1, h2, h3, .nvt-font-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Header Navbar */
+.nvt-navbar {
+    background-color: rgba(248, 249, 250, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.nvt-nav-link {
+    font-weight: 600;
+    color: #414844;
+    transition: color 0.2s;
+}
+
+.nvt-nav-link:hover, .nvt-nav-link.active {
+    color: var(--nvt-primary);
+}
+
+/* Page Header Banner */
+.nvt-page-header {
+    background-color: rgba(165, 208, 185, 0.2);
+    padding: 60px 0;
+}
+
+/* Sidebar Filters */
+.nvt-filter-title {
+    font-weight: 600;
+    color: var(--nvt-primary);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+.nvt-custom-checkbox .form-check-input:checked {
+    background-color: var(--nvt-terracotta);
+    border-color: var(--nvt-terracotta);
+}
+
+/* Product Cards */
+.nvt-product-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(1, 45, 29, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.nvt-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(1, 45, 29, 0.1);
+}
+
+.nvt-product-img-wrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background-color: #f3f4f5;
+}
+
+.nvt-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.nvt-product-card:hover .nvt-product-img {
+    transform: scale(1.05);
+}
+
+.nvt-badge-custom {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(116, 198, 157, 0.3);
+    color: var(--nvt-primary);
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.nvt-btn-cart {
+    background-color: #f3f4f5;
+    color: var(--nvt-primary);
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.nvt-btn-cart:hover {
+    background-color: var(--nvt-terracotta);
+    color: #ffffff;
+}
+
+
+/* Custom CSS bổ sung cho trang Nvt_detail */
+
+/* Gallery Thumbnails */
+.nvt-thumb-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    padding: 0;
+    background: transparent;
+}
+
+.nvt-thumb-btn.active, .nvt-thumb-btn:hover {
+    border-color: var(--nvt-primary);
+    opacity: 1;
+}
+
+.nvt-thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Radio button chọn kích thước chậu */
+.nvt-size-option input[type="radio"] {
+    display: none;
+}
+
+.nvt-size-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #c1c8c2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #414844;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nvt-size-option input[type="radio"]:checked + .nvt-size-btn {
+    background-color: var(--nvt-primary);
+    color: #ffffff;
+    border-color: var(--nvt-primary);
+}
+
+.nvt-size-btn:hover {
+    border-color: var(--nvt-primary);
+}
+
+/* Nút thêm vào giỏ & Yêu thích */
+.nvt-btn-add-cart {
+    background-color: var(--nvt-terracotta);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.nvt-btn-add-cart:hover {
+    background-color: #c29263;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.nvt-btn-wishlist {
+    width: 52px;
+    height: 52px;
+    border: 1px solid var(--nvt-primary);
+    color: var(--nvt-primary);
+    border-radius: 10px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.nvt-btn-wishlist:hover {
+    background-color: rgba(1, 45, 29, 0.05);
+}
+
+/* Nav Tabs & Cards */
+.nvt-nav-tabs .nav-link {
+    border: none;
+    color: #414844;
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 2px solid transparent;
+}
+
+.nvt-nav-tabs .nav-link.active {
+    color: var(--nvt-primary);
+    border-bottom-color: var(--nvt-primary);
+    background: transparent;
+}
+
+.nvt-care-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(1, 45, 29, 0.05);
+    border: none;
+}
+
+.nvt-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #f3f4f5;
+    color: var(--nvt-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+
+/* Custom CSS bổ sung cho trang Admin (Nvt_admin) */
+
+/* Layout Admin */
+.nvt-admin-sidebar {
+    width: 260px;
+    background-color: #f3f4f5;
+    min-height: 100vh;
+    border-right: 1px solid #e1e3e4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nvt-admin-main {
+    margin-left: 260px;
+    padding: 32px;
+}
+
+@media (max-width: 768px) {
+    .nvt-admin-sidebar {
+        display: none;
+    }
+    .nvt-admin-main {
+        margin-left: 0;
+        padding: 16px;
+    }
+}
+
+/* Sidebar Nav */
+.nvt-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    color: #414844;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nvt-sidebar-link:hover {
+    background-color: #e7e8e9;
+    color: var(--nvt-primary);
+    transform: translateX(4px);
+}
+
+.nvt-sidebar-link.active {
+    background-color: #a0f4c8;
+    color: #19724f;
+}
+
+/* Table Styling */
+.nvt-admin-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.nvt-admin-table thead th {
+    background-color: #f3f4f5;
+    color: #414844;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 16px;
+    border-bottom: 1px solid #e1e3e4;
+}
+
+.nvt-admin-table tbody td {
+    padding: 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #edeeef;
+}
+
+.nvt-admin-table tbody tr:hover {
+    background-color: rgba(237, 238, 239, 0.5);
+}
+
+/* Row Action Buttons (Hiện khi hover dòng) */
+.nvt-table-actions {
+    opacity: 0.2;
+    transition: opacity 0.2s ease;
+}
+
+tr:hover .nvt-table-actions {
+    opacity: 1;
+}
+
+/* Status Badges */
+.nvt-badge-in-stock {
+    background-color: rgba(116, 198, 157, 0.2);
+    color: #1b4332;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 50rem;
+    font-size: 0.75rem;
+}
+
+.nvt-badge-out-of-stock {
+    background-color: #e1e3e4;
+    color: #414844;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 50rem;
+    font-size: 0.75rem;
+}
+
+.nvt-btn-accent {
+    background-color: #d4a373;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nvt-btn-accent:hover {
+    background-color: #c29161;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Custom CSS bổ sung cho trang Giỏ hàng (Nvt_cart) */
+
+/* Cart Item Card */
+.nvt-cart-item {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px -10px rgba(27, 67, 50, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nvt-cart-item:hover {
+    box-shadow: 0 12px 35px -8px rgba(27, 67, 50, 0.12);
+}
+
+.nvt-cart-img-wrapper {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.nvt-cart-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.nvt-cart-item:hover .nvt-cart-img-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Quantity Control Controls */
+.nvt-qty-control {
+    background-color: #f3f4f5;
+    border-radius: 8px;
+    padding: 4px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nvt-qty-btn {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #414844;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nvt-qty-btn:hover {
+    background-color: #e1e3e4;
+    color: var(--nvt-primary);
+}
+
+.nvt-qty-input {
+    width: 32px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    background: transparent;
+}
+
+/* Order Summary Box */
+.nvt-summary-card {
+    background: rgba(248, 249, 250, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 10px 40px -10px rgba(27, 67, 50, 0.08);
+}
+
+.nvt-btn-checkout {
+    background-color: #d4a373;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
+}
+
+.nvt-btn-checkout:hover {
+    background-color: #c29161;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(212, 163, 115, 0.4);
+}
+
+/* Nvt_style.css - Tùy chỉnh riêng cho giao diện Nvt */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="tel"] {
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="tel"]:focus {
+  border-color: #1b4332;
+  box-shadow: none;
+}
