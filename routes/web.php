@@ -8,11 +8,27 @@ Route::get('/', [NvtHomeController::class, 'index'])->name('home');
 Route::get('/san-pham', [NvtHomeController::class, 'products'])->name('products');
 Route::get('/chi-tiet-san-pham/{id?}', [NvtHomeController::class, 'detail'])->name('product.detail');
 
+// Chăm sóc cây
+Route::get('/care-guide', [NvtHomeController::class, 'careGuide'])->name('nvt.care.guide');
+
+// Giới thiệu
+Route::get('/about', [NvtHomeController::class, 'about'])->name('nvt.about');
+
 // Trang Quản trị Admin
 Route::get('/admin/products', [NvtHomeController::class, 'adminProducts'])->name('admin.products');
+Route::post('/admin/products', [NvtHomeController::class, 'storeProduct'])->name('admin.products.store');
+Route::put('/admin/products/{id}', [NvtHomeController::class, 'updateProduct'])->name('admin.products.update');
+Route::delete('/admin/products/{id}', [NvtHomeController::class, 'destroyProduct'])->name('admin.products.destroy');
 
-// Route Trang Giỏ hàng (Đã đổi tên route thành nvt.cart để đồng bộ với Blade)
+// Route Quản trị Danh mục (Categories)
+Route::post('/admin/categories', [NvtHomeController::class, 'storeCategory'])->name('admin.categories.store');
+Route::put('/admin/categories/{id}', [NvtHomeController::class, 'updateCategory'])->name('admin.categories.update');
+Route::delete('/admin/categories/{id}', [NvtHomeController::class, 'destroyCategory'])->name('admin.categories.destroy');
+
+// Route Trang Giỏ hàng
 Route::get('/cart', [NvtHomeController::class, 'cart'])->name('nvt.cart');
+Route::post('/cart/add', [NvtHomeController::class, 'addToCart'])->name('nvt.cart.add');
+Route::post('/cart/remove/{id}', [NvtHomeController::class, 'removeFromCart'])->name('nvt.cart.remove');
 
 // Route Trang Thanh toán
 Route::get('/checkout', [NvtHomeController::class, 'checkout'])->name('nvt.checkout');
