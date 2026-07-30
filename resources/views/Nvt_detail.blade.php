@@ -26,17 +26,16 @@
             <nav class="nav d-none d-md-flex gap-4">
                 <a class="nav-link nvt-nav-link" href="{{ route('home') }}">Trang chủ</a>
                 <a class="nav-link nvt-nav-link" href="{{ route('products') }}">Sản phẩm</a>
-                <a class="nav-link nvt-nav-link" href="#">Bán chạy</a>
-                <a class="nav-link nvt-nav-link" href="#">Chăm sóc cây</a>
-                <a class="nav-link nvt-nav-link" href="#">Giới thiệu</a>
+                <a class="nav-link nvt-nav-link" href="{{ route('nvt.care.guide') }}">Chăm sóc cây</a>
+                <a class="nav-link nvt-nav-link" href="{{ route('nvt.about') }}">Giới thiệu</a>
             </nav>
 
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-link text-dark p-0"><span class="material-symbols-outlined">person</span></button>
-                <button class="btn btn-link text-dark p-0 position-relative">
+                <a href="{{ route('admin.products') }}" class="btn btn-link text-dark p-0" title="Admin"><span class="material-symbols-outlined">person</span></a>
+                <a href="{{ route('nvt.cart') }}" class="btn btn-link text-dark p-0 position-relative" title="Giỏ hàng">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -111,10 +110,15 @@
 
                 <!-- Add to Cart CTA -->
                 <div class="d-flex gap-3 mb-4">
-                    <button class="btn nvt-btn-add-cart flex-grow-1 d-flex justify-content-center align-items-center gap-2">
-                        <span class="material-symbols-outlined fs-5">shopping_bag</span>
-                        Thêm vào giỏ hàng
-                    </button>
+                    <form action="{{ route('nvt.cart.add') }}" method="POST" class="flex-grow-1 d-flex">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->ProductId }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn nvt-btn-add-cart w-100 d-flex justify-content-center align-items-center gap-2">
+                            <span class="material-symbols-outlined fs-5">shopping_bag</span>
+                            Thêm vào giỏ hàng
+                        </button>
+                    </form>
                     <button class="btn nvt-btn-wishlist">
                         <span class="material-symbols-outlined">favorite_border</span>
                     </button>
@@ -190,6 +194,7 @@
             <div class="row g-4">
                 @foreach($relatedProducts as $item)
                 <div class="col-6 col-md-3">
+                    <a href="{{ route('product.detail', $item->ProductId) }}" class="text-decoration-none">
                     <div class="card nvt-product-card h-100">
                         <div class="nvt-product-img-wrapper">
                             <img src="{{ asset('images/' . ($item->Image ?? 'default.jpg')) }}" 
@@ -204,6 +209,7 @@
                             </p>
                         </div>
                     </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
@@ -224,9 +230,9 @@
                     <div>
                         <h6 class="fw-bold mb-3">Khám phá</h6>
                         <ul class="list-unstyled small mb-0">
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Về chúng tôi</a></li>
+                            <li class="mb-2"><a href="{{ route('nvt.about') }}" class="text-decoration-none text-muted">Về chúng tôi</a></li>
                             <li class="mb-2"><a href="{{ route('products') }}" class="text-decoration-none text-muted">Tất cả sản phẩm</a></li>
-                            <li><a href="#" class="text-decoration-none text-muted">Mẹo chăm sóc cây</a></li>
+                            <li><a href="{{ route('nvt.care.guide') }}" class="text-decoration-none text-muted">Mẹo chăm sóc cây</a></li>
                         </ul>
                     </div>
                     <div>

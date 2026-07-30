@@ -105,20 +105,25 @@
 </head>
 <body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
 
-<!-- Header -->
-<header class="w-full bg-surface-container-lowest border-b border-surface-container py-md px-gutter">
+<!-- Header được đồng bộ lại chuẩn đẹp -->
+<header class="w-full bg-surface-container-lowest border-b border-surface-container py-md px-gutter sticky top-0 z-50 shadow-sm">
     <div class="max-w-container-max mx-auto flex justify-between items-center">
-        <a class="font-headline-lg text-headline-lg text-primary tracking-tight" href="#">Verdant Harmony</a>
-        <a class="text-on-surface-variant flex items-center gap-xs hover:text-primary transition-colors" href="{{ route('nvt.cart') }}">
-            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-            <span class="font-label-md text-label-md">Quay lại giỏ hàng</span>
+        <a class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold" href="{{ route('home') }}">Verdant Harmony</a>
+        
+        <!-- Nút Quay lại giỏ hàng thiết kế chỉn chu -->
+        <a class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant/60 text-primary hover:bg-surface-container-low transition-all font-label-md text-label-md shadow-xs" href="{{ route('nvt.cart') }}">
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            <span>Quay lại giỏ hàng</span>
         </a>
     </div>
 </header>
 
 <!-- Main Content -->
 <main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl">
-    <h1 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Thanh toán</h1>
+    <div class="mb-lg">
+        <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Thanh toán đơn hàng</h1>
+        <p class="text-on-surface-variant font-body-md">Vui lòng điền thông tin giao hàng và chọn phương thức thanh toán.</p>
+    </div>
     
     <form action="{{ route('nvt.checkout.process') }}" method="POST">
         @csrf
@@ -128,50 +133,50 @@
             <div class="lg:col-span-7 space-y-xl">
                 
                 <!-- Contact Info -->
-                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm">
-                    <h2 class="font-headline-md text-headline-md text-on-surface mb-md">Thông tin liên hệ</h2>
+                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest">
+                    <h2 class="font-headline-md text-headline-md text-primary mb-md">Thông tin liên hệ</h2>
                     <div class="space-y-md">
                         <div>
                             <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="email">Địa chỉ Email</label>
-                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="email" name="email" placeholder="bancan@example.com" type="email" required/>
+                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="email" name="email" placeholder="bancan@example.com" type="email" required/>
                         </div>
                         <div class="flex items-center gap-sm">
                             <input class="rounded text-primary focus:ring-primary h-5 w-5 bg-surface-container-low border-outline-variant" id="newsletter" name="newsletter" type="checkbox"/>
-                            <label class="font-body-md text-body-md text-on-surface-variant" for="newsletter">Gửi cho tôi tin tức và ưu đãi qua email</label>
+                            <label class="font-body-md text-body-md text-on-surface-variant cursor-pointer" for="newsletter">Gửi cho tôi tin tức và ưu đãi qua email</label>
                         </div>
                     </div>
                 </section>
 
                 <!-- Shipping Address -->
-                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm">
-                    <h2 class="font-headline-md text-headline-md text-on-surface mb-md">Địa chỉ giao hàng</h2>
+                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest">
+                    <h2 class="font-headline-md text-headline-md text-primary mb-md">Địa chỉ giao hàng</h2>
                     <div class="space-y-md">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
                             <div>
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="firstName">Họ</label>
-                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="firstName" name="first_name" placeholder="Nguyễn" type="text" required/>
+                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="firstName" name="first_name" placeholder="Nguyễn" type="text" required/>
                             </div>
                             <div>
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="lastName">Tên</label>
-                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="lastName" name="last_name" placeholder="Văn A" type="text" required/>
+                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="lastName" name="last_name" placeholder="Văn A" type="text" required/>
                             </div>
                         </div>
                         <div>
                             <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="address">Địa chỉ nhà, tên đường</label>
-                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="address" name="address" placeholder="Số 123 Đường ABC" type="text" required/>
+                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="address" name="address" placeholder="Số 123 Đường ABC" type="text" required/>
                         </div>
                         <div>
                             <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="apartment">Căn hộ, số phòng, tòa nhà... (tùy chọn)</label>
-                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="apartment" name="apartment" type="text"/>
+                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="apartment" name="apartment" type="text"/>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
                             <div class="md:col-span-1">
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="city">Tỉnh / Thành phố</label>
-                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="city" name="city" placeholder="Hà Nội" type="text" required/>
+                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="city" name="city" placeholder="Hà Nội" type="text" required/>
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="state">Quận / Huyện</label>
-                                <select class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md appearance-none" id="state" name="state">
+                                <select class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm appearance-none" id="state" name="state">
                                     <option value="">Chọn Quận / Huyện...</option>
                                     <option value="Ba Đình">Ba Đình</option>
                                     <option value="Cầu Giấy">Cầu Giấy</option>
@@ -180,25 +185,25 @@
                             </div>
                             <div class="md:col-span-1">
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="zip">Mã bưu chính</label>
-                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="zip" name="zip" placeholder="100000" type="text"/>
+                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="zip" name="zip" placeholder="100000" type="text"/>
                             </div>
                         </div>
                         <div>
                             <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="phone">Số điện thoại</label>
-                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="phone" name="phone" placeholder="0901234567" type="tel" required/>
+                            <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="phone" name="phone" placeholder="0901234567" type="tel" required/>
                         </div>
                     </div>
                 </section>
 
                 <!-- Payment Method -->
-                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm">
-                    <h2 class="font-headline-md text-headline-md text-on-surface mb-md">Phương thức thanh toán</h2>
+                <section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest">
+                    <h2 class="font-headline-md text-headline-md text-primary mb-md">Phương thức thanh toán</h2>
                     <p class="font-body-md text-body-md text-on-surface-variant mb-md">Tất cả giao dịch đều được bảo mật và mã hóa.</p>
+                    
                     <div class="border border-outline-variant rounded-lg overflow-hidden">
-                        
                         <div class="p-md bg-surface border-b border-outline-variant flex items-center justify-between">
                             <div class="flex items-center gap-sm">
-                                <input checked class="text-primary focus:ring-primary h-5 w-5 bg-surface-container-lowest border-outline-variant" id="pay-card" name="payment_method" value="card" type="radio"/>
+                                <input checked class="text-primary focus:ring-primary h-5 w-5 bg-surface-container-lowest border-outline-variant cursor-pointer" id="pay-card" name="payment_method" value="card" type="radio"/>
                                 <label class="font-label-md text-label-md text-on-surface cursor-pointer" for="pay-card">Thẻ tín dụng / Thẻ ghi nợ</label>
                             </div>
                             <div class="flex gap-xs">
@@ -210,28 +215,28 @@
                             <div>
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="cc-number">Số thẻ</label>
                                 <div class="relative">
-                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md pr-10" id="cc-number" name="cc_number" placeholder="0000 0000 0000 0000" type="text"/>
+                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md pr-10 rounded-t-sm" id="cc-number" name="cc_number" placeholder="0000 0000 0000 0000" type="text"/>
                                     <span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-md">
                                 <div>
                                     <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="cc-exp">Ngày hết hạn (MM/YY)</label>
-                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="cc-exp" name="cc_exp" placeholder="MM/YY" type="text"/>
+                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="cc-exp" name="cc_exp" placeholder="MM/YY" type="text"/>
                                 </div>
                                 <div>
                                     <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="cc-csc">Mã bảo mật (CVC/CVV)</label>
-                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="cc-csc" name="cc_csc" placeholder="123" type="text"/>
+                                    <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="cc-csc" name="cc_csc" placeholder="123" type="text"/>
                                 </div>
                             </div>
                             <div>
                                 <label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="cc-name">Tên in trên thẻ</label>
-                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md" id="cc-name" name="cc_name" type="text"/>
+                                <input class="w-full bg-surface-container-low border-b-2 border-outline-variant py-sm px-md focus:outline-none focus:border-primary transition-colors text-body-md font-body-md rounded-t-sm" id="cc-name" name="cc_name" type="text"/>
                             </div>
                         </div>
 
                         <div class="p-md bg-surface flex items-center gap-sm">
-                            <input class="text-primary focus:ring-primary h-5 w-5 bg-surface-container-lowest border-outline-variant" id="pay-paypal" name="payment_method" value="paypal" type="radio"/>
+                            <input class="text-primary focus:ring-primary h-5 w-5 bg-surface-container-lowest border-outline-variant cursor-pointer" id="pay-paypal" name="payment_method" value="paypal" type="radio"/>
                             <label class="font-label-md text-label-md text-on-surface cursor-pointer" for="pay-paypal">Ví điện tử PayPal</label>
                         </div>
                     </div>
@@ -240,54 +245,74 @@
 
             <!-- Right Column: Tóm tắt đơn hàng -->
             <div class="lg:col-span-5">
-                <div class="bg-surface-container p-lg rounded-xl sticky top-md">
-                    <h2 class="font-headline-md text-headline-md text-on-surface mb-lg">Tóm tắt đơn hàng</h2>
+                <div class="bg-surface-container p-lg rounded-xl sticky top-[90px] border border-surface-container-highest shadow-sm">
+                    <h2 class="font-headline-md text-headline-md text-primary mb-lg">Tóm tắt đơn hàng</h2>
                     
+                    <!-- Danh sách món hàng mẫu/động -->
                     <div class="space-y-md mb-lg">
+                        @forelse($cartItems ?? [
+                            (object)['ProductName' => 'Monstera Deliciosa', 'Attributes' => 'Size Vừa / Chậu Sứ Trắng', 'Price' => 450000, 'Quantity' => 1]
+                        ] as $item)
                         <div class="flex items-center gap-md">
-                            <div class="relative w-20 h-24 rounded-lg overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNxjvpr4K-aecy4MJAY4aAsVE7TmWi54gKV5vHQ9TGVbfKxrEqHSH1BudawIuoq8zSY6TnCgYKKNPCplM0UeECi81UyAXw3Hl-6CGBbeYVXHG1yuavoUYztI0joeDiOdV2FrzCqP2CTefHQVAWEjjlFifBaMkkAN5SBkJxQzpZvv72OOjplHzrEvqbPdpROasJzT0RJl71_JQyzuGecp4ktbQu4wD6SdfJUQ_KP42Xpo6rNgH6XJVT4SPpD_3RCDRXmmf5oI8p7ro"/>
-                                <div class="absolute -top-2 -right-2 bg-on-surface-variant text-surface-container-lowest w-6 h-6 rounded-full flex items-center justify-center font-label-md text-[12px]">1</div>
+                            <div class="relative w-16 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-lowest border border-outline-variant/30">
+                                <img class="w-full h-full object-cover" src="{{ asset('images/' . ($item->Image ?? 'default.jpg')) }}" onerror="this.src='https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=200&q=80'" alt="{{ $item->ProductName }}"/>
+                                <div class="absolute -top-1 -right-1 bg-primary text-on-primary w-5 h-5 rounded-full flex items-center justify-center font-label-md text-[11px] font-bold">
+                                    {{ $item->Quantity }}
+                                </div>
                             </div>
                             <div class="flex-grow">
-                                <h3 class="font-label-md text-label-md text-on-surface">Monstera Deliciosa</h3>
-                                <p class="font-body-md text-[14px] text-on-surface-variant">Size Vừa / Chậu Sứ Trắng</p>
+                                <h3 class="font-label-md text-label-md text-primary font-semibold">{{ $item->ProductName }}</h3>
+                                <p class="font-body-md text-[13px] text-on-surface-variant">{{ $item->Attributes ?? 'Mặc định' }}</p>
                             </div>
-                            <div class="font-label-md text-label-md text-on-surface">450.000 ₫</div>
+                            <div class="font-label-md text-label-md text-primary font-bold">
+                                {{ number_format($item->Price * $item->Quantity, 0, ',', '.') }} ₫
+                            </div>
                         </div>
+                        @empty
+                        <p class="text-on-surface-variant text-sm">Chưa có món hàng nào.</p>
+                        @endforelse
                     </div>
 
-                    <div class="space-y-sm mb-lg border-b border-outline-variant pb-lg">
+                    <!-- Tóm tắt số tiền -->
+                    <div class="space-y-sm mb-lg border-t border-b border-outline-variant/50 py-md">
                         <div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
                             <span>Tạm tính</span>
-                            <span>730.000 ₫</span>
+                            <span>{{ number_format($subtotal ?? 730000, 0, ',', '.') }} ₫</span>
                         </div>
                         <div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
                             <span>Phí vận chuyển</span>
-                            <span>Tính ở bước tiếp theo</span>
+                            <span>{{ number_format($shippingFee ?? 50000, 0, ',', '.') }} ₫</span>
                         </div>
                         <div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
                             <span>Thuế (VAT)</span>
-                            <span>58.400 ₫</span>
+                            <span>{{ number_format($vat ?? 58400, 0, ',', '.') }} ₫</span>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center mb-xl">
-                        <span class="font-headline-md text-headline-md text-on-surface">Tổng cộng</span>
-                        <span class="font-headline-md text-headline-md text-on-surface"><span class="text-on-surface-variant text-[14px] font-normal mr-1">VND</span>788.400 ₫</span>
+                    <div class="flex justify-between items-center mb-lg">
+                        <span class="font-headline-md text-headline-md text-primary">Tổng cộng</span>
+                        <span class="font-headline-md text-headline-md text-primary font-bold">
+                            {{ number_format($grandTotal ?? 838400, 0, ',', '.') }} ₫
+                        </span>
                     </div>
 
-                    <button type="submit" class="w-full bg-primary-container text-on-primary font-label-md text-[16px] py-md rounded-lg shadow-sm hover:scale-[1.02] hover:bg-primary transition-all duration-300 flex justify-center items-center gap-sm">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
-                        Đặt hàng ngay
+                    <!-- Nút đặt hàng đồng bộ màu thương hiệu -->
+                    <button type="submit" class="w-full bg-[#D4A373] text-white font-label-md text-[16px] py-3.5 rounded-lg shadow-sm hover:bg-[#c29161] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex justify-center items-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">lock</span>
+                        <span>Đặt hàng ngay</span>
                     </button>
+                    
+                    <p class="text-center font-body-md text-[12px] text-on-surface-variant mt-sm">
+                        Bằng việc đặt hàng, bạn đã đồng ý với Điều khoản dịch vụ và Chính sách bảo mật của chúng tôi.
+                    </p>
                 </div>
             </div>
         </div>
     </form>
 </main>
 
-<footer class="w-full border-t border-surface-container py-md mt-xl">
+<!-- Footer -->
+<footer class="w-full border-t border-surface-container py-md mt-xl bg-surface-container-lowest">
     <div class="max-w-container-max mx-auto px-gutter text-center">
         <p class="font-body-md text-[14px] text-on-surface-variant">© 2026 Verdant Harmony. Tất cả các quyền được bảo lưu.</p>
     </div>

@@ -26,17 +26,16 @@
             <nav class="nav d-none d-md-flex gap-4">
                 <a class="nav-link nvt-nav-link" href="{{ route('home') }}">Trang chủ</a>
                 <a class="nav-link nvt-nav-link active" href="{{ route('products') }}">Sản phẩm</a>
-                <a class="nav-link nvt-nav-link" href="#">Bán chạy</a>
-                <a class="nav-link nvt-nav-link" href="#">Chăm sóc cây</a>
-                <a class="nav-link nvt-nav-link" href="#">Giới thiệu</a>
+                <a class="nav-link nvt-nav-link" href="{{ route('nvt.care.guide') }}">Chăm sóc cây</a>
+                <a class="nav-link nvt-nav-link" href="{{ route('nvt.about') }}">Giới thiệu</a>
             </nav>
 
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-link text-dark p-0"><span class="material-symbols-outlined">person</span></button>
-                <button class="btn btn-link text-dark p-0 position-relative">
+                <a href="{{ route('admin.products') }}" class="btn btn-link text-dark p-0" title="Admin"><span class="material-symbols-outlined">person</span></a>
+                <a href="{{ route('nvt.cart') }}" class="btn btn-link text-dark p-0 position-relative" title="Giỏ hàng">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -63,15 +62,15 @@
                         <h3 class="nvt-font-title nvt-filter-title">Kích thước</h3>
                         <div class="nvt-custom-checkbox">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="sizeSmall">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="sizeSmall" data-group="size" value="small">
                                 <label class="form-check-label text-muted" for="sizeSmall">Nhỏ</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="sizeMedium">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="sizeMedium" data-group="size" value="medium">
                                 <label class="form-check-label text-muted" for="sizeMedium">Trung bình</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="sizeLarge">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="sizeLarge" data-group="size" value="large">
                                 <label class="form-check-label text-muted" for="sizeLarge">Lớn</label>
                             </div>
                         </div>
@@ -82,15 +81,15 @@
                         <h3 class="nvt-font-title nvt-filter-title">Ánh sáng</h3>
                         <div class="nvt-custom-checkbox">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="lightLow">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="lightLow" data-group="light" value="low">
                                 <label class="form-check-label text-muted" for="lightLow">Ánh sáng yếu</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="lightIndirect">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="lightIndirect" data-group="light" value="indirect">
                                 <label class="form-check-label text-muted" for="lightIndirect">Ánh sáng gián tiếp</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="lightDirect">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="lightDirect" data-group="light" value="direct">
                                 <label class="form-check-label text-muted" for="lightDirect">Nắng trực tiếp</label>
                             </div>
                         </div>
@@ -101,7 +100,7 @@
                         <h3 class="nvt-font-title nvt-filter-title">Thú cưng</h3>
                         <div class="nvt-custom-checkbox">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="petFriendly">
+                                <input class="form-check-input nvt-filter-cb" type="checkbox" id="petFriendly" data-group="pet" value="friendly">
                                 <label class="form-check-label text-muted" for="petFriendly">Thân thiện với thú cưng</label>
                             </div>
                         </div>
@@ -113,7 +112,7 @@
             <section class="col-md-9">
                 <!-- Sort Bar -->
                 <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
-                    <span class="text-muted small">Hiển thị {{ count($products) }} sản phẩm</span>
+                    <span class="text-muted small" id="product-count">Hiển thị {{ count($products) }} sản phẩm</span>
                     <div class="d-flex align-items-center gap-2">
                         <label for="sort" class="fw-semibold text-success small mb-0">Sắp xếp theo:</label>
                         <select class="form-select form-select-sm border-0 bg-light w-auto fw-semibold" id="sort">
@@ -128,23 +127,30 @@
                 <!-- Product Grid -->
                 <div class="row g-4">
                     @foreach($products as $product)
-                    <div class="col-sm-6 col-lg-4">
+                    @php
+                        $size = ['small', 'medium', 'large'][$product->ProductId % 3];
+                        $light = ['low', 'indirect', 'direct'][$product->ProductId % 3];
+                        $pet = ['friendly', 'toxic'][$product->ProductId % 2];
+                    @endphp
+                    <div class="col-sm-6 col-lg-4 nvt-product-item" data-size="{{ $size }}" data-light="{{ $light }}" data-pet="{{ $pet }}">
+                        <a href="{{ route('product.detail', $product->ProductId) }}" class="text-decoration-none">
                         <div class="card nvt-product-card h-100">
                             <div class="nvt-product-img-wrapper">
                                 <img src="{{ asset('images/' . ($product->Image ?? 'default.jpg')) }}" 
                                      class="nvt-product-img" 
                                      alt="{{ $product->ProductName }}"
                                      onerror="this.src='https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=500&q=80'">
-                                <span class="nvt-badge-custom">{{ $product->Badge ?? 'Ánh sáng gián tiếp' }}</span>
+                                <span class="nvt-badge-custom">{{ $product->CategoryName }}</span>
                             </div>
                             <div class="card-body d-flex flex-column p-3">
                                 <h2 class="fs-6 fw-bold text-success mb-1">{{ $product->ProductName }}</h2>
                                 <p class="fw-bold mb-3" style="color: var(--nvt-terracotta);">
                                     {{ number_format($product->Price, 0, ',', '.') }}₫
                                 </p>
-                                <button class="btn nvt-btn-cart mt-auto">Thêm vào giỏ</button>
+                                <span class="btn nvt-btn-cart mt-auto">Xem chi tiết &rarr;</span>
                             </div>
                         </div>
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -177,16 +183,16 @@
                     <div>
                         <h6 class="fw-bold mb-3">Khám phá</h6>
                         <ul class="list-unstyled small mb-0">
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Về chúng tôi</a></li>
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-success fw-bold">Tất cả sản phẩm</a></li>
-                            <li><a href="#" class="text-decoration-none text-muted">Mẹo chăm sóc cây</a></li>
+                            <li class="mb-2"><a href="{{ route('nvt.about') }}" class="text-decoration-none text-muted">Về chúng tôi</a></li>
+                            <li class="mb-2"><a href="{{ route('products') }}" class="text-decoration-none text-success fw-bold">Tất cả sản phẩm</a></li>
+                            <li><a href="{{ route('nvt.care.guide') }}" class="text-decoration-none text-muted">Mẹo chăm sóc cây</a></li>
                         </ul>
                     </div>
                     <div>
                         <h6 class="fw-bold mb-3">Hỗ trợ</h6>
                         <ul class="list-unstyled small mb-0">
-                            <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Liên hệ</a></li>
-                            <li><a href="#" class="text-decoration-none text-muted">Chính sách bảo mật</a></li>
+                            <li class="mb-2"><a href="{{ route('home') }}#footer" class="text-decoration-none text-muted">Liên hệ</a></li>
+                            <li><a href="{{ route('home') }}#footer" class="text-decoration-none text-muted">Chính sách bảo mật</a></li>
                         </ul>
                     </div>
                 </div>
@@ -200,5 +206,45 @@
     <!-- Bootstrap JS + jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.nvt-filter-cb');
+            const products = document.querySelectorAll('.nvt-product-item');
+            const countLabel = document.getElementById('product-count');
+
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', filterProducts);
+            });
+
+            function filterProducts() {
+                const activeFilters = {
+                    size: Array.from(document.querySelectorAll('.nvt-filter-cb[data-group="size"]:checked')).map(cb => cb.value),
+                    light: Array.from(document.querySelectorAll('.nvt-filter-cb[data-group="light"]:checked')).map(cb => cb.value),
+                    pet: Array.from(document.querySelectorAll('.nvt-filter-cb[data-group="pet"]:checked')).map(cb => cb.value)
+                };
+
+                let visibleCount = 0;
+
+                products.forEach(product => {
+                    const pSize = product.getAttribute('data-size');
+                    const pLight = product.getAttribute('data-light');
+                    const pPet = product.getAttribute('data-pet');
+
+                    const matchSize = activeFilters.size.length === 0 || activeFilters.size.includes(pSize);
+                    const matchLight = activeFilters.light.length === 0 || activeFilters.light.includes(pLight);
+                    const matchPet = activeFilters.pet.length === 0 || activeFilters.pet.includes(pPet);
+
+                    if (matchSize && matchLight && matchPet) {
+                        product.style.display = '';
+                        visibleCount++;
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+
+                countLabel.textContent = 'Hiển thị ' + visibleCount + ' sản phẩm';
+            }
+        });
+    </script>
 </body>
 </html>
