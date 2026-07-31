@@ -20,34 +20,36 @@
     <aside class="nvt-admin-sidebar p-3 d-flex flex-column">
         <!-- Brand / User Header -->
         <div class="d-flex align-items-center gap-3 mb-4 px-2">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" 
+            <img src="{{ asset('images/admin_avatar.jpg') }}" 
                  class="rounded-circle object-fit-cover shadow-sm" 
-                 width="40" height="40" alt="Admin Avatar">
+                 width="40" height="40" alt="Admin Avatar"
+                 onerror="this.src='https://images.unsplash.com/photo-1599598425947-33004b503083?auto=format&fit=crop&w=100&q=80'">
             <div>
-                <h2 class="nvt-font-title fs-6 fw-bold text-success mb-0">Admin Console</h2>
+                <h2 class="nvt-font-title fs-6 fw-bold text-success mb-0">NvtAdmin</h2>
                 <small class="text-muted">Verdant Harmony</small>
             </div>
         </div>
 
         <!-- Navigation Links -->
         <div class="nav flex-column gap-1 flex-grow-1" id="nvt-admin-tabs" role="tablist">
-            <a class="nvt-sidebar-link" id="nav-dashboard-tab" data-bs-toggle="tab" href="#nav-dashboard" role="tab" style="cursor: pointer;">
+            @php $activeTab = session('active_tab', 'nav-products'); @endphp
+            <a class="nvt-sidebar-link {{ $activeTab == 'nav-dashboard' ? 'active' : '' }}" id="nav-dashboard-tab" data-bs-toggle="tab" href="#nav-dashboard" role="tab" style="cursor: pointer;">
                 <span class="material-symbols-outlined">dashboard</span>
                 Dashboard
             </a>
-            <a class="nvt-sidebar-link active" id="nav-products-tab" data-bs-toggle="tab" href="#nav-products" role="tab" style="cursor: pointer;">
+            <a class="nvt-sidebar-link {{ $activeTab == 'nav-products' ? 'active' : '' }}" id="nav-products-tab" data-bs-toggle="tab" href="#nav-products" role="tab" style="cursor: pointer;">
                 <span class="material-symbols-outlined">potted_plant</span>
                 Kho hàng
             </a>
-            <a class="nvt-sidebar-link" id="nav-categories-tab" data-bs-toggle="tab" href="#nav-categories" role="tab" style="cursor: pointer;">
+            <a class="nvt-sidebar-link {{ $activeTab == 'nav-categories' ? 'active' : '' }}" id="nav-categories-tab" data-bs-toggle="tab" href="#nav-categories" role="tab" style="cursor: pointer;">
                 <span class="material-symbols-outlined">category</span>
                 Danh Mục
             </a>
-            <a class="nvt-sidebar-link" id="nav-orders-tab" data-bs-toggle="tab" href="#nav-orders" role="tab" style="cursor: pointer;">
+            <a class="nvt-sidebar-link {{ $activeTab == 'nav-orders' ? 'active' : '' }}" id="nav-orders-tab" data-bs-toggle="tab" href="#nav-orders" role="tab" style="cursor: pointer;">
                 <span class="material-symbols-outlined">shopping_bag</span>
                 Đơn hàng
             </a>
-            <a class="nvt-sidebar-link" id="nav-customers-tab" data-bs-toggle="tab" href="#nav-customers" role="tab" style="cursor: pointer;">
+            <a class="nvt-sidebar-link {{ $activeTab == 'nav-customers' ? 'active' : '' }}" id="nav-customers-tab" data-bs-toggle="tab" href="#nav-customers" role="tab" style="cursor: pointer;">
                 <span class="material-symbols-outlined">group</span>
                 Khách hàng
             </a>
@@ -64,7 +66,7 @@
     <main class="nvt-admin-main tab-content" id="nvt-admin-tabsContent">
         
         <!-- TAB: KHO SẢN PHẨM -->
-        <div class="tab-pane fade show active container-fluid max-w-container-max p-0" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab">
+        <div class="tab-pane fade {{ $activeTab == 'nav-products' ? 'show active' : '' }} container-fluid max-w-container-max p-0" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab">
             
             <!-- Page Header & Actions -->
             <header class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
@@ -218,7 +220,7 @@
         <!-- END TAB: SẢN PHẨM -->
 
         <!-- TAB: DANH MỤC -->
-        <div class="tab-pane fade container-fluid max-w-container-max p-0" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
+        <div class="tab-pane fade {{ $activeTab == 'nav-categories' ? 'show active' : '' }} container-fluid max-w-container-max p-0" id="nav-categories" role="tabpanel" aria-labelledby="nav-categories-tab">
             <header class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
                 <div>
                     <h1 class="nvt-font-title fs-2 fw-bold text-success mb-1">Quản lý Danh mục</h1>
@@ -271,7 +273,7 @@
         <!-- END TAB: DANH MỤC -->
 
         <!-- TAB: THỐNG KÊ (DASHBOARD) -->
-        <div class="tab-pane fade container-fluid max-w-container-max p-0" id="nav-dashboard" role="tabpanel" aria-labelledby="nav-dashboard-tab">
+        <div class="tab-pane fade {{ $activeTab == 'nav-dashboard' ? 'show active' : '' }} container-fluid max-w-container-max p-0" id="nav-dashboard" role="tabpanel" aria-labelledby="nav-dashboard-tab">
             <header class="mb-4">
                 <h1 class="nvt-font-title fs-2 fw-bold text-success mb-1">Thống Kê Tổng Quan</h1>
             </header>
@@ -303,7 +305,7 @@
         <!-- END TAB: DASHBOARD -->
 
         <!-- TAB: ĐƠN HÀNG -->
-        <div class="tab-pane fade container-fluid max-w-container-max p-0" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
+        <div class="tab-pane fade {{ $activeTab == 'nav-orders' ? 'show active' : '' }} container-fluid max-w-container-max p-0" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
             <header class="mb-4">
                 <h1 class="nvt-font-title fs-2 fw-bold text-success mb-1">Lịch sử Đơn hàng</h1>
             </header>
@@ -313,21 +315,41 @@
                         <thead>
                             <tr>
                                 <th>Mã ĐH</th>
+                                <th>Khách Hàng</th>
                                 <th>Ngày Đặt</th>
                                 <th>Tổng Tiền</th>
                                 <th>Trạng Thái</th>
+                                <th class="text-end">Thao Tác</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="align-middle">
                             @forelse($orders ?? [] as $ord)
                             <tr>
-                                <td>#ORD0{{ $ord->OrderId }}</td>
-                                <td>{{ $ord->OrderDate }}</td>
+                                <td class="fw-semibold text-muted">#ORD0{{ $ord->OrderId }}</td>
+                                <td>
+                                    <div class="fw-bold text-dark">{{ $ord->customer->FullName ?? 'Khách vãng lai' }}</div>
+                                    <small class="text-muted">{{ $ord->customer->Phone ?? '' }}</small>
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($ord->OrderDate)->format('d/m/Y H:i') }}</td>
                                 <td class="fw-bold text-success">{{ number_format($ord->TotalAmount, 0, ',', '.') }} ₫</td>
-                                <td><span class="badge bg-secondary">{{ $ord->OrderStatus }}</span></td>
+                                <td>
+                                    @php
+                                        $statusClass = 'bg-secondary';
+                                        if($ord->OrderStatus == 'Đã hoàn thành') $statusClass = 'bg-success';
+                                        elseif($ord->OrderStatus == 'Đang giao hàng') $statusClass = 'bg-info';
+                                        elseif($ord->OrderStatus == 'Đang xử lý') $statusClass = 'bg-warning text-dark';
+                                        elseif($ord->OrderStatus == 'Đã hủy') $statusClass = 'bg-danger';
+                                    @endphp
+                                    <span class="badge {{ $statusClass }} rounded-pill px-3 py-2">{{ $ord->OrderStatus }}</span>
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-light text-primary p-1" title="Xem chi tiết">
+                                        <span class="material-symbols-outlined fs-6">visibility</span>
+                                    </button>
+                                </td>
                             </tr>
                             @empty
-                            <tr><td colspan="4" class="text-center py-5">Chưa có đơn hàng nào.</td></tr>
+                            <tr><td colspan="6" class="text-center py-5 text-muted">Chưa có đơn hàng nào.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -337,7 +359,7 @@
         <!-- END TAB: ĐƠN HÀNG -->
         
         <!-- TAB: KHÁCH HÀNG -->
-        <div class="tab-pane fade container-fluid max-w-container-max p-0" id="nav-customers" role="tabpanel" aria-labelledby="nav-customers-tab">
+        <div class="tab-pane fade {{ $activeTab == 'nav-customers' ? 'show active' : '' }} container-fluid max-w-container-max p-0" id="nav-customers" role="tabpanel" aria-labelledby="nav-customers-tab">
             <header class="mb-4">
                 <h1 class="nvt-font-title fs-2 fw-bold text-success mb-1">Thông tin Khách hàng</h1>
             </header>
