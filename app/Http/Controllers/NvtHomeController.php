@@ -90,8 +90,8 @@ class NvtHomeController extends Controller
     {
         $products = NvtProduct::with('category')->get();
         $categories = NvtCategory::all();
-        $orders = NvtOrder::all();
-        $customers = NvtCustomer::all();
+        $orders = NvtOrder::with('customer')->orderBy('OrderDate', 'desc')->get();
+        $customers = NvtCustomer::orderBy('CustomerId', 'desc')->get();
 
         return view('Nvt_admin', compact('products', 'categories', 'orders', 'customers'));
     }
@@ -118,7 +118,7 @@ class NvtHomeController extends Controller
 
         NvtProduct::create($validated);
 
-        return redirect()->route('admin.products')->with('success', 'Đã thêm sản phẩm thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã thêm sản phẩm thành công!')->with('active_tab', 'nav-products');
     }
 
     /**
@@ -145,7 +145,7 @@ class NvtHomeController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('admin.products')->with('success', 'Đã cập nhật sản phẩm thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã cập nhật sản phẩm thành công!')->with('active_tab', 'nav-products');
     }
 
     /**
@@ -156,7 +156,7 @@ class NvtHomeController extends Controller
         $product = NvtProduct::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('admin.products')->with('success', 'Đã xóa sản phẩm thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã xóa sản phẩm thành công!')->with('active_tab', 'nav-products');
     }
 
     // ======================================================================
@@ -171,7 +171,7 @@ class NvtHomeController extends Controller
         ]);
 
         NvtCategory::create($validated);
-        return redirect()->route('admin.products')->with('success', 'Đã thêm danh mục mới thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã thêm danh mục mới thành công!')->with('active_tab', 'nav-categories');
     }
 
     public function updateCategory(Request $request, $id)
@@ -184,7 +184,7 @@ class NvtHomeController extends Controller
         $category = NvtCategory::findOrFail($id);
         $category->update($validated);
 
-        return redirect()->route('admin.products')->with('success', 'Đã cập nhật danh mục thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã cập nhật danh mục thành công!')->with('active_tab', 'nav-categories');
     }
 
     public function destroyCategory($id)
@@ -192,13 +192,13 @@ class NvtHomeController extends Controller
         // Kiểm tra xem danh mục có sản phẩm nào không
         $productCount = NvtProduct::where('CategoryId', $id)->count();
         if ($productCount > 0) {
-            return redirect()->route('admin.products')->withErrors('Không thể xóa danh mục đang có sản phẩm. Vui lòng chuyển sản phẩm sang danh mục khác trước.');
+            return redirect()->route('admin.products')->withErrors('Không thể xóa danh mục đang có sản phẩm. Vui lòng chuyển sản phẩm sang danh mục khác trước.')->with('active_tab', 'nav-categories');
         }
 
         $category = NvtCategory::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('admin.products')->with('success', 'Đã xóa danh mục thành công!');
+        return redirect()->route('admin.products')->with('success', 'Đã xóa danh mục thành công!')->with('active_tab', 'nav-categories');
     }
 
     // ======================================================================
