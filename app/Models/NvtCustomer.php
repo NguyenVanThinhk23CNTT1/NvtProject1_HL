@@ -12,6 +12,7 @@ class NvtCustomer extends Model
 
     protected $fillable = [
         'FullName',
+        'Username',
         'Email',
         'Password',
         'Phone',
