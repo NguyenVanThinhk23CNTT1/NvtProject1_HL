@@ -31,7 +31,15 @@
             </nav>
 
             <div class="d-flex align-items-center gap-3">
-                <a href="{{ route('admin.products') }}" class="btn btn-link text-dark p-0" title="Admin"><span class="material-symbols-outlined">person</span></a>
+                @if(Session::has('customer_id'))
+                    @if((string)Session::get('customer_role') === '1')
+                        <a href="{{ route('admin.products') }}" class="btn btn-link text-primary p-0 me-2" title="Quản trị Admin"><span class="material-symbols-outlined">admin_panel_settings</span></a>
+                    @endif
+                    <a href="{{ route('nvt.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-link text-danger p-0" title="Đăng xuất ({{ Session::get('customer_name') }})"><span class="material-symbols-outlined">logout</span></a>
+                    <form id="logout-form" action="{{ route('nvt.logout') }}" method="POST" class="d-none">@csrf</form>
+                @else
+                    <a href="{{ route('nvt.login') }}" class="btn btn-link text-dark p-0" title="Đăng nhập"><span class="material-symbols-outlined">account_circle</span></a>
+                @endif
                 <a href="{{ route('nvt.cart') }}" class="btn btn-link text-dark p-0 position-relative" title="Giỏ hàng">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
