@@ -41,9 +41,21 @@
                             {{ $totalQuantity ?? count($cartItems ?? []) }}
                         </span>
                     </a>
-                    <a href="{{ route('admin.products') }}" class="btn p-1 text-success" title="Quản trị Admin">
-                        <span class="material-symbols-outlined fs-4">person</span>
-                    </a>
+                    @if(Session::has('customer_id'))
+                        @if((string)Session::get('customer_role') === '1')
+                            <a href="{{ route('admin.products') }}" class="btn p-1 text-primary me-1" title="Quản trị Admin">
+                                <span class="material-symbols-outlined fs-4">admin_panel_settings</span>
+                            </a>
+                        @endif
+                        <a href="{{ route('nvt.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn p-1 text-danger" title="Đăng xuất ({{ Session::get('customer_name') }})">
+                            <span class="material-symbols-outlined fs-4">logout</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('nvt.logout') }}" method="POST" class="d-none">@csrf</form>
+                    @else
+                        <a href="{{ route('nvt.login') }}" class="btn p-1 text-success" title="Đăng nhập">
+                            <span class="material-symbols-outlined fs-4">account_circle</span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -55,10 +55,10 @@
             </a>
         </div>
 
-        <!-- Bottom Action Logout -->
-        <a class="nvt-sidebar-link text-danger mt-auto" href="{{ route('home') }}">
-            <span class="material-symbols-outlined">logout</span>
-            Đăng xuất
+        <!-- Bottom Action Back to Home -->
+        <a class="nvt-sidebar-link text-success mt-auto" href="{{ route('home') }}">
+            <span class="material-symbols-outlined">home</span>
+            Về trang chính
         </a>
     </aside>
 

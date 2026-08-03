@@ -53,7 +53,15 @@
                     <li class="nav-item"><a class="nav-link text-dark" href="{{ route('nvt.about') }}">Giới thiệu</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3">
-                    <a href="{{ route('admin.products') }}" class="text-dark"><span class="material-symbols-outlined fs-4">person</span></a>
+                    @if(Session::has('customer_id'))
+                        @if((string)Session::get('customer_role') === '1')
+                            <a href="{{ route('admin.products') }}" class="text-primary me-2" title="Quản trị Admin"><span class="material-symbols-outlined fs-4">admin_panel_settings</span></a>
+                        @endif
+                        <a href="{{ route('nvt.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-danger" title="Đăng xuất ({{ Session::get('customer_name') }})"><span class="material-symbols-outlined fs-4">logout</span></a>
+                        <form id="logout-form" action="{{ route('nvt.logout') }}" method="POST" class="d-none">@csrf</form>
+                    @else
+                        <a href="{{ route('nvt.login') }}" class="text-dark" title="Đăng nhập"><span class="material-symbols-outlined fs-4">account_circle</span></a>
+                    @endif
                     <a href="{{ route('nvt.cart') }}" class="text-dark"><span class="material-symbols-outlined fs-4">shopping_cart</span></a>
                 </div>
             </div>
