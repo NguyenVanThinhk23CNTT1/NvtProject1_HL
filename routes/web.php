@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NvtHomeController;
+use App\Http\Controllers\TdDhAuthController;
 
 // Trang chủ & Sản phẩm
 Route::get('/', [NvtHomeController::class, 'index'])->name('home');
@@ -33,3 +34,12 @@ Route::post('/cart/remove/{id}', [NvtHomeController::class, 'removeFromCart'])->
 // Route Trang Thanh toán
 Route::get('/checkout', [NvtHomeController::class, 'checkout'])->name('nvt.checkout');
 Route::post('/checkout/process', [NvtHomeController::class, 'process'])->name('nvt.checkout.process');
+
+// ======================================================================
+// Auth Routes (Đăng nhập / Đăng ký)
+// ======================================================================
+Route::get('/login', [TdDhAuthController::class, 'showLoginForm'])->name('nvt.login');
+Route::post('/login', [TdDhAuthController::class, 'login'])->name('nvt.login.submit');
+Route::get('/register', [TdDhAuthController::class, 'showRegisterForm'])->name('nvt.register');
+Route::post('/register', [TdDhAuthController::class, 'register'])->name('nvt.register.submit');
+Route::post('/logout', [TdDhAuthController::class, 'logout'])->name('nvt.logout');
